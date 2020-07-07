@@ -1,0 +1,19 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+h1 {
+    width: 700px;
+    height: 600px;
+    background-color: blue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 260px;
+    text-align: center;
+}
+
+.wrapperbtn {
+    display: flex;
+    justify-content: space-around;
+}
