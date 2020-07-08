@@ -189,13 +189,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Counter from './counter';
-import {createStore, bindActionCreators} from 'redux';                                           
+import {createStore} from 'redux';   
+import {Provider} from 'react-redux';                              //через проавайдер передаю дані по ієрархії в низ.                              
 import reducer from './reducer';
-import * as actions from './actions';
+//import * as actions from './actions';
+import App from './components/app'
 
 const store = createStore(reducer);
-const {dispatch} = store;
+//const {dispatch} = store;
 
 // actions = {
 //     inc: inc,
@@ -209,7 +210,7 @@ const {dispatch} = store;
 // }
 
 
-const {dec, inc, rnd, del} = bindActionCreators(actions, dispatch);
+//const {dec, inc, rnd, del} = bindActionCreators(actions, dispatch);
 
 // const decDispatch = bindActionCreators(dec, dispatch);
 // const delDispatch = bindActionCreators(del, dispatch);
@@ -227,20 +228,11 @@ const {dec, inc, rnd, del} = bindActionCreators(actions, dispatch);
 
 // document.getElementById('del').addEventListener('click', del);
 
-const update = () => {
-    //document.getElementById('counter').textContent = store.getState();
+          
+    //document.getElementById('counter').textContent = store.getState(); 
+    ReactDOM.render(
+        <Provider store={store}>                 
+        <App/>
+        </Provider>, document.getElementById('root'))
 
-    ReactDOM.render(<Counter
-    counter={store.getState()}
-    inc = {inc}
-    dec = {dec}
-    del = {del}
-    rnd = {() => {
-        const value = Math.floor(Math.random() *10);
-        rnd(value)
-    }}/>, document.getElementById('root'))
 
-}
-update();
-
-store.subscribe(update);
